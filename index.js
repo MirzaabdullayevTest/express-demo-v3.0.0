@@ -2,6 +2,8 @@ const express = require('express')
 const app = express()
 const path = require('path')
 
+app.use(express.static(path.join(__dirname, 'public')))
+
 app.get('/', (req, res) => {
     // res.send('Hello express js')
     // res.sendFile(path.join(__dirname, 'index.html'))
@@ -11,6 +13,18 @@ app.get('/', (req, res) => {
 })
 
 app.set('view engine', 'pug')
+
+app.get('/contact', (req, res) => {
+    res.render('contact', {
+        title: 'Contact'
+    })
+})
+app.get('/about', (req, res) => {
+    res.render('about', {
+        title: 'About',
+        arr: [1, 2, 3, 4, 56, 6]
+    })
+})
 
 app.get('/books', (req, res) => {
     // res.send(JSON.stringify(['Rich dad and poor dad', 'Rework', 'From A to Z']))
